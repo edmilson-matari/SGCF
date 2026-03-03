@@ -1,0 +1,230 @@
+@baseUrl = http://localhost:3000/api
+@contentType = application/json
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzcyNTM2MDgyLCJleHAiOjE3NzI2MjI0ODJ9.kfvMbVujLPTrij1-223OhBrSkV5ETR9KztidMEyt_5s
+
+# ─────────────────────────────────────────
+# AUTH
+# ─────────────────────────────────────────
+
+### Register
+POST {{baseUrl}}/auth/register
+Content-Type: {{contentType}}
+
+{
+    "name": "Edmilson",
+    "email": "edmilsonmatari7@gmail.com",
+    "phone": "934951038",
+    "role": "admin",
+    "password": "admin123"
+}
+
+### Login
+POST {{baseUrl}}/auth/login
+Content-Type: {{contentType}}
+
+{
+    "email": "edmilsonmatari7@gmail.com",
+    "password": "admin123"
+}
+
+# ─────────────────────────────────────────
+# STUDENTS
+# ─────────────────────────────────────────
+
+### Create Student
+POST {{baseUrl}}/students/create
+Content-Type: {{contentType}}
+Authorization: {{token}}
+
+{
+    "name": "João Silva",
+    "email": "joao.silva@gmail.com",
+    "phone": "912345678",
+    "bi": "123456789LA042",
+    "date_of_birth": "2000-01-15",
+    "address": "Luanda, Angola"
+}
+
+### Get All Students
+GET {{baseUrl}}/students
+Authorization: {{token}}
+
+### Get Student by ID
+GET {{baseUrl}}/students/1
+Authorization: {{token}}
+
+### Update Student
+PUT {{baseUrl}}/students/1
+Content-Type: {{contentType}}
+Authorization: {{token}}
+
+{
+    "name": "João Silva Editado",
+    "email": "joao.editado@gmail.com",
+    "phone": "923456789",
+    "bi": "123456789LA042",
+    "date_of_birth": "2000-01-15",
+    "address": "Benguela, Angola",
+    "status": "active"
+}
+
+### Delete Student
+DELETE {{baseUrl}}/students/1
+Authorization: {{token}}
+
+# ─────────────────────────────────────────
+# INSTRUCTORS
+# ─────────────────────────────────────────
+
+### Create Instructor
+POST {{baseUrl}}/instructors
+Content-Type: {{contentType}}
+Authorization: {{token}}
+
+{
+    "name": "Carlos Mendes",
+    "email": "carlos.mendes@gmail.com",
+    "phone": "923000111",
+    "specialty": "Programação Web"
+}
+
+### Get All Instructors
+GET {{baseUrl}}/instructors
+Authorization: {{token}}
+
+### Get Instructor by ID
+GET {{baseUrl}}/instructors/1
+Authorization: {{token}}
+
+### Update Instructor
+PUT {{baseUrl}}/instructors/1
+Content-Type: {{contentType}}
+Authorization: {{token}}
+
+{
+    "name": "Carlos Mendes Editado",
+    "email": "carlos.editado@gmail.com",
+    "phone": "923000222",
+    "specialty": "Desenvolvimento Mobile",
+    "status": "active"
+}
+
+### Delete Instructor
+DELETE {{baseUrl}}/instructors/1
+Authorization: {{token}}
+
+# ─────────────────────────────────────────
+# COURSES
+# ─────────────────────────────────────────
+
+### Create Course
+POST {{baseUrl}}/courses
+Content-Type: {{contentType}}
+Authorization: {{token}}
+
+{
+    "name": "Desenvolvimento Web",
+    "description": "Curso completo de HTML, CSS e JavaScript",
+    "price": 50000,
+    "duration_hours": 120,
+    "instructor_id": 1
+}
+
+### Get All Courses
+GET {{baseUrl}}/courses
+Authorization: {{token}}
+
+### Get Course by ID
+GET {{baseUrl}}/courses/1
+Authorization: {{token}}
+
+### Update Course
+PUT {{baseUrl}}/courses/1
+Content-Type: {{contentType}}
+Authorization: {{token}}
+
+{
+    "name": "Desenvolvimento Web Avançado",
+    "description": "Curso atualizado com React e Node.js",
+    "price": 65000,
+    "duration_hours": 150,
+    "instructor_id": 1,
+    "status": "active"
+}
+
+### Delete Course
+DELETE {{baseUrl}}/courses/1
+Authorization: {{token}}
+
+# ─────────────────────────────────────────
+# ENROLLMENTS
+# ─────────────────────────────────────────
+
+### Create Enrollment
+POST {{baseUrl}}/enrollments
+Content-Type: {{contentType}}
+Authorization: {{token}}
+
+{
+    "student_id": 1,
+    "course_id": 1,
+    "total_amount": 50000
+}
+
+### Get All Enrollments
+GET {{baseUrl}}/enrollments
+Authorization: {{token}}
+
+### Get Enrollment by ID
+GET {{baseUrl}}/enrollments/1
+Authorization: {{token}}
+
+### Get Enrollments by Student
+GET {{baseUrl}}/enrollments/student/1
+Authorization: {{token}}
+
+### Update Enrollment Status
+PATCH {{baseUrl}}/enrollments/1/status
+Content-Type: {{contentType}}
+Authorization: {{token}}
+
+{
+    "status": "completed"
+}
+
+# ─────────────────────────────────────────
+# PAYMENTS
+# ─────────────────────────────────────────
+
+### Create Payment
+POST {{baseUrl}}/payments
+Content-Type: {{contentType}}
+Authorization: {{token}}
+
+{
+    "enrollment_id": 1,
+    "amount": 25000,
+    "method": "transfer",
+    "notes": "Primeira prestação"
+}
+
+### Get All Payments
+GET {{baseUrl}}/payments
+Authorization: {{token}}
+
+### Get Payments by Enrollment
+GET {{baseUrl}}/payments/enrollment/1
+Authorization: {{token}}
+
+### Cancel Payment
+PATCH {{baseUrl}}/payments/1/cancel
+Authorization: {{token}}
+
+# ─────────────────────────────────────────
+# DASHBOARD
+# ─────────────────────────────────────────
+
+### Get Dashboard
+GET {{baseUrl}}/dashboard
+Authorization: {{token}}
+
