@@ -4,6 +4,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import {
+  angolanBI,
+  angolanPhone,
+  BI_MESSAGE,
+  PHONE_MESSAGE,
+} from "@/utils/validators";
+import {
   Plus,
   Search,
   Pencil,
@@ -27,11 +33,11 @@ import Badge, {
 
 const schema = z.object({
   name: z.string().min(2, "Nome obrigatório"),
-  bi: z.string().min(8, "BI obrigatório"),
+  bi: z.string().min(1, "BI obrigatório").regex(angolanBI, BI_MESSAGE),
   email: z.string().email("Email inválido").optional().or(z.literal("")),
   phone: z
     .string()
-    .regex(/^9\d{8}$/, "Número inválido — deve começar com 9 e ter 9 dígitos")
+    .regex(angolanPhone, PHONE_MESSAGE)
     .optional()
     .or(z.literal("")),
   date_of_birth: z.string().optional(),
@@ -449,7 +455,8 @@ export default function Students() {
                 </label>
                 <input
                   {...register("bi")}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="004567890LA011"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
                 />
                 {errors.bi && (
                   <p className="text-red-500 text-xs mt-1">
@@ -478,8 +485,14 @@ export default function Students() {
                 </label>
                 <input
                   {...register("phone")}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="923456789"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
                 />
+                {errors.phone && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.phone.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">

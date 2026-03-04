@@ -18,13 +18,7 @@ export default function Header({ title, onMenuToggle }: HeaderProps) {
     navigate("/login");
   };
 
-  const initials =
-    user?.name
-      .split(" ")
-      .map((n) => n[0])
-      .slice(0, 2)
-      .join("")
-      .toUpperCase() ?? "U";
+  const initial = (user?.name?.split(" ")[0]?.[0] ?? "U").toUpperCase();
 
   return (
     <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 lg:px-6 flex-shrink-0 sticky top-0 z-20">
@@ -55,8 +49,13 @@ export default function Header({ title, onMenuToggle }: HeaderProps) {
             onClick={() => setMenuOpen((o) => !o)}
             className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-slate-50 transition-colors"
           >
-            <div className="w-8 h-8 rounded-full bg-blue-700 flex items-center justify-center text-white text-xs font-semibold">
-              {initials}
+            <div
+              className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
+              style={{
+                background: "linear-gradient(135deg, #0d3b38 0%, #0f766e 100%)",
+              }}
+            >
+              {initial}
             </div>
             <div className="text-left hidden sm:block">
               <p className="text-sm font-medium text-slate-800 leading-tight">

@@ -4,7 +4,7 @@
   "description": "A simple backend server for handling API requests and database interactions.",
   "main": "index.js",
   "scripts": {
-    "dev": "node --env-file=.env --watch ./src/server.ts",
+    "dev": "node --env-file=.env.local --watch ./src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

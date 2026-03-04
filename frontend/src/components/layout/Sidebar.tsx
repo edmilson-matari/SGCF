@@ -51,13 +51,18 @@ export default function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
           !isMobile && collapsed ? "justify-center px-0" : "px-5 gap-3",
         )}
       >
-        <div className="flex items-center justify-center w-8 h-8 rounded-md bg-blue-700 text-white flex-shrink-0">
+        <div
+          className="flex items-center justify-center w-8 h-8 rounded-md text-white flex-shrink-0"
+          style={{
+            background: "linear-gradient(135deg, #0d3b38 0%, #0f766e 100%)",
+          }}
+        >
           <span className="text-xs font-bold">CF</span>
         </div>
         {(isMobile || !collapsed) && (
           <div className="leading-tight flex-1 min-w-0">
             <p className="text-sm font-bold text-slate-900">
-              my<span className="text-blue-700">SGCF</span>
+              my<span className="text-teal-800">SGCF</span>
             </p>
             <p className="text-[10px] text-slate-400">Centro de Formação FF</p>
           </div>
@@ -84,7 +89,7 @@ export default function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
                 "relative flex items-center gap-3 px-4 py-2.5 text-sm transition-colors group",
                 !isMobile && collapsed && "justify-center px-0",
                 isActive
-                  ? "text-blue-700 bg-blue-50 font-medium"
+                  ? "text-teal-800 bg-teal-50 font-medium"
                   : "text-slate-500 hover:text-slate-800 hover:bg-slate-50 font-normal",
               )
             }
@@ -92,14 +97,14 @@ export default function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
             {({ isActive }) => (
               <>
                 {isActive && (
-                  <span className="absolute left-0 top-1 bottom-1 w-[3px] rounded-r-full bg-blue-700" />
+                  <span className="absolute left-0 top-1 bottom-1 w-[3px] rounded-r-full bg-teal-800" />
                 )}
                 <Icon
                   size={17}
                   className={clsx(
                     "flex-shrink-0",
                     isActive
-                      ? "text-blue-700"
+                      ? "text-teal-800"
                       : "text-slate-400 group-hover:text-slate-500",
                   )}
                 />

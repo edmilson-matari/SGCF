@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { School } from "lucide-react";
+import { Eye, EyeOff, GraduationCap } from "lucide-react";
 import { login } from "@/api/auth";
 import { useAuthStore } from "@/store/authStore";
 
@@ -17,6 +18,8 @@ type FormData = z.infer<typeof schema>;
 export default function Login() {
   const navigate = useNavigate();
   const { login: storeLogin } = useAuthStore();
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
 
   const {
     register,
@@ -35,79 +38,152 @@ export default function Login() {
   const onSubmit = (data: FormData) => mutation.mutate(data);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-950 to-blue-800 p-4">
-      <div className="w-full max-w-sm">
-        {/* Logo */}
-        <div className="flex flex-col items-center mb-8">
-          <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-3 shadow-lg">
-            <School size={28} className="text-blue-700" />
+    <div className="min-h-screen flex items-center justify-center bg-slate-100 p-4">
+      <div className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden flex min-h-[540px]">
+        {/* ── Left panel ── */}
+        <div
+          className="hidden md:flex md:w-[48%] flex-col justify-between p-8 relative"
+          style={{
+            background:
+              "linear-gradient(160deg, #0f2a2e 0%, #0d3b38 35%, #0a4a42 60%, #0d3030 100%)",
+          }}
+        >
+          {/* subtle texture overlay */}
+          <div
+            className="absolute inset-0 opacity-20 rounded-l-3xl"
+            style={{
+              backgroundImage:
+                "url(\"data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.15'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+            }}
+          />
+
+          {/* Logo */}
+          <div className="relative flex items-center gap-2">
+            <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+              <GraduationCap size={18} className="text-white" />
+            </div>
+            <span className="text-white font-bold text-sm tracking-widest uppercase">
+              SGCF
+            </span>
           </div>
-          <h1 className="text-2xl font-bold text-white">SGCF</h1>
-          <p className="text-blue-200 text-sm mt-1">
-            Sistema de Gestão do Centro de Formação
-          </p>
+
+          {/* Bottom text */}
+          <div className="relative">
+            <h2 className="text-white font-black text-4xl leading-tight tracking-tight mb-4">
+              A SUA FORMAÇÃO
+              <br />
+              COMEÇA
+              <br />
+              AQUI!
+            </h2>
+            <p className="text-white/70 text-sm leading-relaxed mb-1">
+              Aceda à plataforma para gerir cursos, formandos e inscrições num
+              só lugar.
+            </p>
+            <p className="text-white/50 text-xs">A sua carreira começa hoje.</p>
+          </div>
         </div>
 
-        {/* Card */}
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
-          <h2 className="text-xl font-semibold text-slate-800 mb-1">
-            Bem-vindo
-          </h2>
-          <p className="text-slate-500 text-sm mb-6">
-            Inicie sessão para continuar
-          </p>
+        {/* ── Right panel ── */}
+        <div className="flex-1 flex flex-col justify-center px-10 py-12">
+          <div className="max-w-sm w-full mx-auto">
+            <h1 className="text-2xl font-black text-slate-800 mb-1 tracking-tight">
+              BEM-VINDO DE VOLTA!
+            </h1>
+            <p className="text-slate-400 text-sm mb-8">
+              Bem-vindo de volta! Por favor insira os seus dados.
+            </p>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
-                Email
-              </label>
-              <input
-                {...register("email")}
-                type="email"
-                placeholder="email@exemplo.com"
-                className="w-full px-3 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-              {errors.email && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
-                Palavra-passe
-              </label>
-              <input
-                {...register("password")}
-                type="password"
-                placeholder="••••••••"
-                className="w-full px-3 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-              {errors.password && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors.password.message}
-                </p>
-              )}
-            </div>
-
-            {mutation.isError && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                <p className="text-red-600 text-sm">
-                  Email ou palavra-passe incorrectos.
-                </p>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+              {/* Email */}
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                  Email
+                </label>
+                <input
+                  {...register("email")}
+                  type="email"
+                  placeholder="Insira o seu email"
+                  className="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-700 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
-            )}
 
-            <button
-              type="submit"
-              disabled={mutation.isPending}
-              className="w-full py-2.5 bg-blue-700 hover:bg-blue-800 disabled:bg-blue-400 text-white rounded-lg text-sm font-medium transition-colors"
-            >
-              {mutation.isPending ? "A entrar..." : "Entrar"}
-            </button>
-          </form>
+              {/* Password */}
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                  Palavra-passe
+                </label>
+                <div className="relative">
+                  <input
+                    {...register("password")}
+                    type={showPassword ? "text" : "password"}
+                    placeholder="••••••••"
+                    className="w-full px-4 py-2.5 pr-10 border border-slate-200 rounded-xl text-sm text-slate-700 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((v) => !v)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition"
+                    tabIndex={-1}
+                  >
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                  </button>
+                </div>
+                {errors.password && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.password.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Remember me + Forgot password */}
+              <div className="flex items-center justify-between">
+                <label className="flex items-center gap-2 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className="w-4 h-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500"
+                  />
+                  <span className="text-sm text-slate-600">Lembrar-me</span>
+                </label>
+                <button
+                  type="button"
+                  className="text-sm font-semibold text-slate-800 hover:text-teal-700 transition"
+                >
+                  Esqueci a palavra-passe
+                </button>
+              </div>
+
+              {/* Error banner */}
+              {mutation.isError && (
+                <div className="bg-red-50 border border-red-200 rounded-xl p-3">
+                  <p className="text-red-600 text-sm">
+                    Email ou palavra-passe incorrectos.
+                  </p>
+                </div>
+              )}
+
+              {/* Submit */}
+              <button
+                type="submit"
+                disabled={mutation.isPending}
+                className="w-full py-2.5 rounded-xl text-sm font-semibold text-white transition-colors"
+                style={{
+                  background: mutation.isPending
+                    ? "#9ca3af"
+                    : "linear-gradient(135deg, #0d3b38 0%, #0f766e 100%)",
+                }}
+              >
+                {mutation.isPending ? "A entrar..." : "Entrar"}
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
