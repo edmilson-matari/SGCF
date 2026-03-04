@@ -292,7 +292,7 @@ export default function Dashboard() {
             </h3>
             <button
               onClick={() => navigate("/matriculas")}
-              className="text-xs text-blue-600 hover:text-blue-700 font-medium"
+              className="text-xs text-teal-700 hover:text-teal-800 font-medium"
             >
               Ver todas
             </button>
@@ -353,7 +353,7 @@ export default function Dashboard() {
                         <div className="flex justify-center">
                           <button
                             onClick={() => navigate("/matriculas")}
-                            className="w-7 h-7 flex items-center justify-center rounded text-slate-400 hover:bg-blue-50 hover:text-blue-600"
+                            className="w-7 h-7 flex items-center justify-center rounded text-slate-400 hover:bg-teal-50 hover:text-teal-700"
                             title="Ver detalhes"
                           >
                             <Eye size={14} />
@@ -395,7 +395,7 @@ export default function Dashboard() {
                       onClick={() => setPage(n as number)}
                       className={`w-7 h-7 flex items-center justify-center rounded text-xs font-medium ${
                         page === n
-                          ? "bg-blue-600 text-white"
+                          ? "bg-teal-700 text-white"
                           : "text-slate-500 hover:bg-slate-100"
                       }`}
                     >

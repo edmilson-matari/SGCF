@@ -176,12 +176,12 @@ export default function Students() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Pesquisar estudante..."
-            className="pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
+            className="pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 w-64"
           />
         </div>
         <button
           onClick={openCreate}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-700 text-white rounded-lg text-sm font-medium hover:bg-blue-800 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-teal-800 text-white rounded-lg text-sm font-medium hover:bg-teal-900 transition-colors"
         >
           <Plus size={15} />
           Novo Estudante
@@ -254,7 +254,7 @@ export default function Students() {
                           </button>
                           <button
                             onClick={() => openEdit(s)}
-                            className="w-7 h-7 flex items-center justify-center rounded text-slate-400 hover:bg-blue-50 hover:text-blue-600"
+                            className="w-7 h-7 flex items-center justify-center rounded text-slate-400 hover:bg-teal-50 hover:text-teal-700"
                             title="Editar"
                           >
                             <Pencil size={14} />
@@ -331,7 +331,7 @@ export default function Students() {
           {/* Enrollments */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <BookOpen size={15} className="text-blue-600" />
+              <BookOpen size={15} className="text-teal-700" />
               <h4 className="text-sm font-semibold text-slate-700">
                 Matrículas
               </h4>
@@ -441,7 +441,7 @@ export default function Students() {
                 </label>
                 <input
                   {...register("name")}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
                 />
                 {errors.name && (
                   <p className="text-red-500 text-xs mt-1">
@@ -471,7 +471,7 @@ export default function Students() {
                 <input
                   {...register("email")}
                   type="email"
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
                 />
                 {errors.email && (
                   <p className="text-red-500 text-xs mt-1">
@@ -501,7 +501,7 @@ export default function Students() {
                 <input
                   {...register("date_of_birth")}
                   type="date"
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
                 />
               </div>
               <div>
@@ -510,7 +510,7 @@ export default function Students() {
                 </label>
                 <select
                   {...register("status")}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 bg-white"
                 >
                   <option value="active">Activo</option>
                   <option value="inactive">Inactivo</option>
@@ -523,7 +523,7 @@ export default function Students() {
                 </label>
                 <input
                   {...register("address")}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
                 />
               </div>
             </div>
@@ -545,7 +545,7 @@ export default function Students() {
               <button
                 type="submit"
                 disabled={createMutation.isPending || updateMutation.isPending}
-                className="px-4 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-800 disabled:opacity-60"
+                className="px-4 py-2 text-sm bg-teal-800 text-white rounded-lg hover:bg-teal-900 disabled:opacity-60"
               >
                 {createMutation.isPending || updateMutation.isPending
                   ? "A guardar..."

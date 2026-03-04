@@ -1,0 +1,35 @@
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1565C0"/>
+      <stop offset="100%" stop-color="#1E88E5"/>
+    </linearGradient>
+    <linearGradient id="gradGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2E7D32"/>
+      <stop offset="100%" stop-color="#43A047"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(50, 50)">
+    <path d="M120 280 C 20 280, 0 180, 0 140 C 0 60, 80 20, 140 20 C 180 20, 220 50, 230 100" 
+          fill="none" stroke="url(#gradBlue)" stroke-width="28" stroke-linecap="round"/>
+    
+    <path d="M140 280 C 240 280, 260 180, 260 140 C 260 80, 220 40, 160 30" 
+          fill="none" stroke="url(#gradGreen)" stroke-width="28" stroke-linecap="round"/>
+
+    <path d="M130 150 L180 150 L180 200" fill="none" stroke="url(#gradBlue)" stroke-width="20" stroke-linecap="round"/>
+
+    <g transform="translate(190, 10) rotate(-15)">
+      <path d="M0 30 L40 10 L80 30 L40 50 Z" fill="#2E7D32"/>
+      <path d="M15 38 L15 55 C 15 60, 65 60, 65 55 L65 38" fill="none" stroke="#1565C0" stroke-width="8"/>
+      <path d="M80 30 L95 60" fill="none" stroke="#1565C0" stroke-width="3"/>
+      <circle cx="95" cy="65" r="4" fill="#1565C0"/>
+    </g>
+  </g>
+
+  <g transform="translate(350, 210)">
+    <text font-family="Arial, sans-serif" font-size="110" font-weight="900" fill="#1565C0" letter-spacing="-2">SGCF</text>
+    <text y="50" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#37474F" letter-spacing="1">SISTEMA DE GESTÃO DE</text>
+    <text y="85" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#37474F" letter-spacing="1">CENTRO DE FORMAÇÃO</text>
+  </g>
+</svg>

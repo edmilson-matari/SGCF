@@ -184,12 +184,12 @@ export default function Courses() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Pesquisar curso..."
-            className="pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
+            className="pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 w-64"
           />
         </div>
         <button
           onClick={openCreate}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-700 text-white rounded-lg text-sm font-medium hover:bg-blue-800 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-teal-800 text-white rounded-lg text-sm font-medium hover:bg-teal-900 transition-colors"
         >
           <Plus size={15} />
           Novo Curso
@@ -277,7 +277,7 @@ export default function Courses() {
                         <div className="flex items-center justify-center gap-2">
                           <button
                             onClick={() => openEdit(c)}
-                            className="w-7 h-7 flex items-center justify-center rounded text-slate-400 hover:bg-blue-50 hover:text-blue-600"
+                            className="w-7 h-7 flex items-center justify-center rounded text-slate-400 hover:bg-teal-50 hover:text-teal-700"
                           >
                             <Pencil size={14} />
                           </button>
@@ -317,7 +317,7 @@ export default function Courses() {
                 </label>
                 <input
                   {...register("name")}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
                 />
                 {errors.name && (
                   <p className="text-red-500 text-xs mt-1">
@@ -332,7 +332,7 @@ export default function Courses() {
                 <textarea
                   {...register("description")}
                   rows={2}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 resize-none"
                 />
               </div>
               <div>
@@ -343,7 +343,7 @@ export default function Courses() {
                   {...register("price")}
                   type="number"
                   min="0"
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
                 />
                 {errors.price && (
                   <p className="text-red-500 text-xs mt-1">
@@ -359,7 +359,7 @@ export default function Courses() {
                   {...register("duration_hours")}
                   type="number"
                   min="1"
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
                 />
                 {errors.duration_hours && (
                   <p className="text-red-500 text-xs mt-1">
@@ -372,7 +372,7 @@ export default function Courses() {
                   Instrutor
                 </label>
                 {selectedInstructorId ? (
-                  <div className="flex items-center justify-between px-3 py-2 border border-blue-300 bg-blue-50 rounded-lg text-sm">
+                  <div className="flex items-center justify-between px-3 py-2 border border-teal-300 bg-teal-50 rounded-lg text-sm">
                     <span className="font-medium text-slate-800">
                       {instructors.find((i) => i.id === selectedInstructorId)
                         ?.name ?? `Instrutor #${selectedInstructorId}`}
@@ -400,7 +400,7 @@ export default function Courses() {
                       value={instructorSearch}
                       onChange={(e) => setInstructorSearch(e.target.value)}
                       placeholder="Pesquisar instrutor..."
-                      className="w-full pl-8 pr-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full pl-8 pr-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
                     />
                     {instructorSearch.trim() && (
                       <div className="absolute z-10 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg max-h-48 overflow-y-auto">
@@ -424,7 +424,7 @@ export default function Courses() {
                                 setValue("instructor_id", i.id as never);
                                 setInstructorSearch("");
                               }}
-                              className="w-full flex items-center gap-3 px-3 py-2 hover:bg-blue-50 text-left transition-colors"
+                              className="w-full flex items-center gap-3 px-3 py-2 hover:bg-teal-50 text-left transition-colors"
                             >
                               <div className="w-7 h-7 rounded-full bg-violet-100 flex items-center justify-center text-violet-700 text-xs font-bold flex-shrink-0">
                                 {i.name.charAt(0).toUpperCase()}
@@ -461,7 +461,7 @@ export default function Courses() {
                 </label>
                 <select
                   {...register("status")}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 bg-white"
                 >
                   <option value="active">Activo</option>
                   <option value="inactive">Inactivo</option>
@@ -481,8 +481,8 @@ export default function Courses() {
                       onClick={() => toggleDay(key)}
                       className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors ${
                         selectedDays.includes(key)
-                          ? "bg-blue-700 text-white border-blue-700"
-                          : "bg-white text-slate-600 border-slate-200 hover:border-blue-400"
+                          ? "bg-teal-800 text-white border-teal-800"
+                          : "bg-white text-slate-600 border-slate-200 hover:border-teal-400"
                       }`}
                     >
                       {label}
@@ -499,7 +499,7 @@ export default function Courses() {
                 <input
                   {...register("schedule_time")}
                   type="time"
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
                 />
               </div>
             </div>
@@ -520,7 +520,7 @@ export default function Courses() {
               <button
                 type="submit"
                 disabled={createMutation.isPending || updateMutation.isPending}
-                className="px-4 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-800 disabled:opacity-60"
+                className="px-4 py-2 text-sm bg-teal-800 text-white rounded-lg hover:bg-teal-900 disabled:opacity-60"
               >
                 {createMutation.isPending || updateMutation.isPending
                   ? "A guardar..."

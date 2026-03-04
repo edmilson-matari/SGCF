@@ -38,8 +38,8 @@ export default function Login() {
   const onSubmit = (data: FormData) => mutation.mutate(data);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-100 p-4">
-      <div className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden flex min-h-[540px]">
+    <div className="min-h-screen flex items-center justify-center bg-slate-100 md:p-4">
+      <div className="w-full md:max-w-4xl bg-white md:rounded-3xl shadow-2xl overflow-hidden flex min-h-screen md:min-h-[540px]">
         {/* ── Left panel ── */}
         <div
           className="hidden md:flex md:w-[48%] flex-col justify-between p-8 relative"
@@ -85,8 +85,29 @@ export default function Login() {
         </div>
 
         {/* ── Right panel ── */}
-        <div className="flex-1 flex flex-col justify-center px-10 py-12">
+        <div className="flex-1 flex flex-col justify-center px-6 py-10 md:px-10 md:py-12">
           <div className="max-w-sm w-full mx-auto">
+            {/* Mobile-only logo */}
+            <div className="flex items-center gap-3 mb-8 md:hidden">
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #0d3b38 0%, #0f766e 100%)",
+                }}
+              >
+                <GraduationCap size={20} className="text-white" />
+              </div>
+              <div className="leading-tight">
+                <p className="text-sm font-bold text-slate-900">
+                  my<span className="text-teal-800">SGCF</span>
+                </p>
+                <p className="text-[10px] text-slate-400">
+                  Centro de Formação FF
+                </p>
+              </div>
+            </div>
+
             <h1 className="text-2xl font-black text-slate-800 mb-1 tracking-tight">
               BEM-VINDO DE VOLTA!
             </h1>

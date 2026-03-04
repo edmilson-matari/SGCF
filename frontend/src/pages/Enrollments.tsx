@@ -220,12 +220,12 @@ export default function Enrollments() {
             value={courseSearch}
             onChange={(e) => setCourseSearch(e.target.value)}
             placeholder="Pesquisar curso..."
-            className="pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
+            className="pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 w-64"
           />
         </div>
         <button
           onClick={openCreate}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-700 text-white rounded-lg text-sm font-medium hover:bg-blue-800 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-teal-800 text-white rounded-lg text-sm font-medium hover:bg-teal-900 transition-colors"
         >
           <Plus size={15} />
           Nova Matrícula
@@ -277,16 +277,16 @@ export default function Enrollments() {
                 key={course.id}
                 type="button"
                 onClick={() => openCourseDetail(course)}
-                className="bg-white rounded-xl border border-slate-100 shadow-sm p-5 text-left hover:border-blue-300 hover:shadow-md transition-all group"
+                className="bg-white rounded-xl border border-slate-100 shadow-sm p-5 text-left hover:border-teal-300 hover:shadow-md transition-all group"
               >
                 {/* Header */}
                 <div className="flex items-start justify-between mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center">
-                    <BookOpen size={18} className="text-blue-600" />
+                  <div className="w-10 h-10 rounded-lg bg-teal-50 flex items-center justify-center">
+                    <BookOpen size={18} className="text-teal-700" />
                   </div>
                   <ChevronRight
                     size={16}
-                    className="text-slate-300 group-hover:text-blue-500 transition-colors mt-1"
+                    className="text-slate-300 group-hover:text-teal-600 transition-colors mt-1"
                   />
                 </div>
 
@@ -367,7 +367,7 @@ export default function Enrollments() {
 
           <div className="flex items-center justify-between mb-3">
             <h4 className="text-sm font-semibold text-slate-700 flex items-center gap-2">
-              <Users size={14} className="text-blue-600" />
+              <Users size={14} className="text-teal-700" />
               Estudantes matriculados ({courseEnrollments.length})
             </h4>
           </div>
@@ -418,7 +418,7 @@ export default function Enrollments() {
                           <div className="flex justify-center">
                             <button
                               onClick={(ev) => openStatus(e, ev)}
-                              className="px-2 py-1 text-xs text-blue-600 border border-blue-200 rounded hover:bg-blue-50"
+                              className="px-2 py-1 text-xs text-teal-700 border border-teal-200 rounded hover:bg-teal-50"
                             >
                               Alterar Estado
                             </button>
@@ -443,7 +443,7 @@ export default function Enrollments() {
                 Estudante *
               </label>
               {selectedStudentId ? (
-                <div className="flex items-center justify-between px-3 py-2 border border-blue-300 bg-blue-50 rounded-lg text-sm">
+                <div className="flex items-center justify-between px-3 py-2 border border-teal-300 bg-teal-50 rounded-lg text-sm">
                   <span className="font-medium text-slate-800">
                     {students.find((s) => s.id === selectedStudentId)?.name ??
                       `Estudante #${selectedStudentId}`}
@@ -471,7 +471,7 @@ export default function Enrollments() {
                     value={studentSearch}
                     onChange={(e) => setStudentSearch(e.target.value)}
                     placeholder="Pesquisar por nome ou BI..."
-                    className="w-full pl-8 pr-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full pl-8 pr-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
                     autoFocus
                   />
                   {studentSearch.trim() && (
@@ -495,9 +495,9 @@ export default function Enrollments() {
                               setValue("student_id", s.id as never);
                               setStudentSearch("");
                             }}
-                            className="w-full flex items-center gap-3 px-3 py-2 hover:bg-blue-50 text-left transition-colors"
+                            className="w-full flex items-center gap-3 px-3 py-2 hover:bg-teal-50 text-left transition-colors"
                           >
-                            <div className="w-7 h-7 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 text-xs font-bold flex-shrink-0">
+                            <div className="w-7 h-7 rounded-full bg-teal-100 flex items-center justify-center text-teal-800 text-xs font-bold flex-shrink-0">
                               {s.name.charAt(0).toUpperCase()}
                             </div>
                             <div className="min-w-0">
@@ -538,7 +538,7 @@ export default function Enrollments() {
               </label>
               <select
                 {...register("course_id")}
-                className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 bg-white"
               >
                 <option value="">— Seleccionar —</option>
                 {courses.map((c) => (
@@ -588,7 +588,7 @@ export default function Enrollments() {
               <button
                 type="submit"
                 disabled={createMutation.isPending}
-                className="px-4 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-800 disabled:opacity-60"
+                className="px-4 py-2 text-sm bg-teal-800 text-white rounded-lg hover:bg-teal-900 disabled:opacity-60"
               >
                 {createMutation.isPending ? "A guardar..." : "Guardar"}
               </button>

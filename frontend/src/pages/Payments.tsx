@@ -238,7 +238,7 @@ export default function Payments() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Pesquisar por estudante, curso..."
-              className="pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-60"
+              className="pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 w-60"
             />
           </div>
 
@@ -246,7 +246,7 @@ export default function Payments() {
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-slate-600"
+            className="px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 bg-white text-slate-600"
           >
             <option value="">Todos os estados</option>
             <option value="paid">Pago</option>
@@ -258,7 +258,7 @@ export default function Payments() {
           <select
             value={filterMethod}
             onChange={(e) => setFilterMethod(e.target.value)}
-            className="px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-slate-600"
+            className="px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 bg-white text-slate-600"
           >
             <option value="">Todos os métodos</option>
             <option value="cash">Numerário</option>
@@ -269,7 +269,7 @@ export default function Payments() {
 
         <button
           onClick={openCreate}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-700 text-white rounded-lg text-sm font-medium hover:bg-blue-800 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-teal-800 text-white rounded-lg text-sm font-medium hover:bg-teal-900 transition-colors"
         >
           <Plus size={15} />
           Registar Pagamento
@@ -386,7 +386,7 @@ export default function Payments() {
                     reset({ method: "cash" });
                   }}
                   placeholder="Nome, BI ou email..."
-                  className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
                 />
               </div>
 
@@ -402,10 +402,10 @@ export default function Payments() {
                         setStudentSearch(s.name);
                         reset({ method: "cash" });
                       }}
-                      className="w-full flex items-center gap-3 px-3 py-2 hover:bg-blue-50 text-left border-b border-slate-50 last:border-0"
+                      className="w-full flex items-center gap-3 px-3 py-2 hover:bg-teal-50 text-left border-b border-slate-50 last:border-0"
                     >
-                      <div className="w-7 h-7 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
-                        <User size={13} className="text-blue-600" />
+                      <div className="w-7 h-7 rounded-full bg-teal-100 flex items-center justify-center shrink-0">
+                        <User size={13} className="text-teal-700" />
                       </div>
                       <div className="min-w-0">
                         <p className="text-sm font-medium text-slate-800 truncate">
@@ -420,12 +420,12 @@ export default function Payments() {
 
               {/* Selected student chip */}
               {selectedStudent && (
-                <div className="mt-2 flex items-center gap-2 px-3 py-2 bg-blue-50 border border-blue-200 rounded-lg text-sm">
-                  <User size={14} className="text-blue-600 shrink-0" />
-                  <span className="font-medium text-blue-800">
+                <div className="mt-2 flex items-center gap-2 px-3 py-2 bg-teal-50 border border-teal-200 rounded-lg text-sm">
+                  <User size={14} className="text-teal-700 shrink-0" />
+                  <span className="font-medium text-teal-900">
                     {selectedStudent.name}
                   </span>
-                  <span className="text-blue-500 text-xs">
+                  <span className="text-teal-600 text-xs">
                     · BI: {selectedStudent.bi}
                   </span>
                   <button
@@ -435,7 +435,7 @@ export default function Payments() {
                       setStudentSearch("");
                       reset({ method: "cash" });
                     }}
-                    className="ml-auto text-blue-400 hover:text-blue-700"
+                    className="ml-auto text-teal-500 hover:text-teal-800"
                   >
                     <XCircle size={14} />
                   </button>
@@ -451,7 +451,7 @@ export default function Payments() {
                 </label>
                 <select
                   {...register("enrollment_id")}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 bg-white"
                 >
                   <option value="">— Seleccionar curso —</option>
                   {studentEnrollments.length === 0 ? (
@@ -506,7 +506,7 @@ export default function Payments() {
                   </label>
                   <select
                     {...register("method")}
-                    className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                    className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 bg-white"
                   >
                     <option value="cash">Numerário</option>
                     <option value="transfer">Transferência bancária</option>
@@ -520,7 +520,7 @@ export default function Payments() {
                   <input
                     {...register("notes")}
                     placeholder="Referência, recibo, notas..."
-                    className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
                   />
                 </div>
               </>
@@ -547,7 +547,7 @@ export default function Payments() {
                   !selectedStudentId ||
                   studentEnrollments.length === 0
                 }
-                className="px-4 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-800 disabled:opacity-60"
+                className="px-4 py-2 text-sm bg-teal-800 text-white rounded-lg hover:bg-teal-900 disabled:opacity-60"
               >
                 {createMutation.isPending ? "A guardar..." : "Guardar"}
               </button>
