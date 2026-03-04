@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
+import type { Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Plus, Search, Loader2, XCircle, User } from "lucide-react";
@@ -101,14 +102,14 @@ export default function Payments() {
     register,
     handleSubmit,
     reset,
-    watch,
+    control,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(schema) as Resolver<FormData>,
     defaultValues: { method: "cash" },
   });
 
-  const watchedEnrollmentId = watch("enrollment_id");
+  const watchedEnrollmentId = useWatch({ control, name: "enrollment_id" });
 
   const createMutation = useMutation({
     mutationFn: (data: FormData) => {
@@ -170,8 +171,17 @@ export default function Payments() {
 
   const selectedStudent = students.find((s) => s.id === selectedStudentId);
 
-  // Enrollments for selected student, enriched with course name/price
+  // Only active enrollments for the selected student (can only pay for active enrolments)
   const studentEnrollments = useMemo(
+    () =>
+      enrollments.filter(
+        (e) => e.student_id === selectedStudentId && e.status === "active",
+      ),
+    [enrollments, selectedStudentId],
+  );
+
+  // All enrollments for the student (to distinguish "no enrolments at all" vs "none active")
+  const allStudentEnrollments = useMemo(
     () => enrollments.filter((e) => e.student_id === selectedStudentId),
     [enrollments, selectedStudentId],
   );
@@ -447,35 +457,40 @@ export default function Payments() {
             {selectedStudentId && (
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">
-                  Curso (matrícula) *
+                  Curso (matrícula activa) *
                 </label>
-                <select
-                  {...register("enrollment_id")}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 bg-white"
-                >
-                  <option value="">— Seleccionar curso —</option>
-                  {studentEnrollments.length === 0 ? (
-                    <option disabled>
-                      Este estudante não tem matrículas activas
-                    </option>
-                  ) : (
-                    studentEnrollments.map((e) => {
-                      const courseName =
-                        e.course_name ??
-                        courses.find((c) => c.id === e.course_id)?.name ??
-                        `Curso #${e.course_id}`;
-                      return (
-                        <option key={e.id} value={e.id}>
-                          {courseName}
-                        </option>
-                      );
-                    })
-                  )}
-                </select>
-                {errors.enrollment_id && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {errors.enrollment_id.message}
-                  </p>
+
+                {studentEnrollments.length === 0 ? (
+                  <div className="px-3 py-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-amber-800">
+                    {allStudentEnrollments.length === 0
+                      ? "Este estudante não tem nenhuma matrícula registada."
+                      : 'Este estudante não tem matrículas activas. Apenas é possível registar pagamentos para matrículas em estado "Activo".'}
+                  </div>
+                ) : (
+                  <>
+                    <select
+                      {...register("enrollment_id")}
+                      className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 bg-white"
+                    >
+                      <option value="">— Seleccionar curso —</option>
+                      {studentEnrollments.map((e) => {
+                        const courseName =
+                          e.course_name ??
+                          courses.find((c) => c.id === e.course_id)?.name ??
+                          `Curso #${e.course_id}`;
+                        return (
+                          <option key={e.id} value={e.id}>
+                            {courseName}
+                          </option>
+                        );
+                      })}
+                    </select>
+                    {errors.enrollment_id && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.enrollment_id.message}
+                      </p>
+                    )}
+                  </>
                 )}
               </div>
             )}

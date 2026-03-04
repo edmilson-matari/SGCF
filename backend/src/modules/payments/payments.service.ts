@@ -11,14 +11,31 @@ export const getByEnrollment = async (enrollment_id: number) => {
 };
 
 export const create = async (payment: Payment) => {
-  // Validate enrollment exists
+  // Validate enrollment exists and the student is actively enrolled
   const enrollmentResult = await pool.query(
-    "SELECT id, total_amount, status FROM enrollments WHERE id = $1",
+    `SELECT e.id, e.total_amount, e.status, e.student_id, e.course_id,
+            s.name AS student_name, c.name AS course_name
+     FROM enrollments e
+     JOIN students s ON e.student_id = s.id
+     JOIN courses  c ON e.course_id  = c.id
+     WHERE e.id = $1`,
     [payment.enrollment_id],
   );
   const enrollment = enrollmentResult.rows[0];
   if (!enrollment) throw new Error("Matrícula não encontrada");
-  if (enrollment.status === "cancelled") throw new Error("Matrícula cancelada");
+
+  if (enrollment.status === "cancelled")
+    throw new Error(
+      `O estudante "${enrollment.student_name}" não está matriculado activamente no curso "${enrollment.course_name}" (matrícula cancelada).`,
+    );
+  if (enrollment.status === "completed")
+    throw new Error(
+      `O estudante "${enrollment.student_name}" já concluiu o curso "${enrollment.course_name}" e o valor total já foi liquidado.`,
+    );
+  if (enrollment.status !== "active")
+    throw new Error(
+      `O estudante "${enrollment.student_name}" não possui matrícula activa no curso "${enrollment.course_name}".`,
+    );
 
   // Check if payment would exceed total_amount
   const totalPaid = await repo.getTotalPaid(payment.enrollment_id);
